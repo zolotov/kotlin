@@ -27,7 +27,6 @@ class ArraysTest {
         checkContent(charArray('0', '1', '2', '3', '4', '5').copyOfRange(0, 3).iterator(), 3) { (it + '0').toChar() }
     }
 
-
     fun <T> checkContent(val iter : Iterator<T>, val length : Int, val value : (Int) -> T) {
         var idx = 0
         while (idx != length && iter.hasNext) {
@@ -88,4 +87,52 @@ class ArraysTest {
         }
     }
 
+    test fun reverse() {
+        expect(arrayList(3, 2, 1)) { intArray(1, 2, 3).reverse() }
+        expect(arrayList<Byte>(3, 2, 1)) { byteArray(1, 2, 3).reverse() }
+        expect(arrayList<Short>(3, 2, 1)) { shortArray(1, 2, 3).reverse() }
+        expect(arrayList<Long>(3, 2, 1)) { longArray(1, 2, 3).reverse() }
+        expect(arrayList(3.toFloat(), 2.toFloat(), 1.toFloat())) { floatArray(1.toFloat(), 2.toFloat(), 3.toFloat()).reverse() }
+        expect(arrayList(3.0, 2.0, 1.0)) { doubleArray(1.0, 2.0, 3.0).reverse() }
+        expect(arrayList('3', '2', '1')) { charArray('1', '2', '3').reverse() }
+        expect(arrayList(false, false, true)) { booleanArray(true, false, false).reverse() }
+    }
+
+    test fun sort() {
+        expect(intArray(1, 2, 3)) {
+            val array = intArray(2, 3, 1)
+            array.sort()
+            array
+        }
+        expect(byteArray(1, 2, 3)) {
+            val array = byteArray(2, 3, 1)
+            array.sort()
+            array
+        }
+        expect(shortArray(1, 2, 3)) {
+            val array = shortArray(2, 3, 1)
+            array.sort()
+            array
+        }
+        expect(longArray(1, 2, 3)) {
+            val array = longArray(2, 3, 1)
+            array.sort()
+            array
+        }
+        expect(doubleArray(1.0, 2.0, 3.0)) {
+            val array = doubleArray(2.0, 3.0, 1.0)
+            array.sort()
+            array
+        }
+        expect(charArray('1', '2', '3')) {
+            val array = charArray('2', '1', '3')
+            array.sort()
+            array
+        }
+        expect(floatArray(1.toFloat(), 2.toFloat(), 3.toFloat())) {
+            val array = floatArray(2.toFloat(), 3.toFloat(), 1.toFloat())
+            array.sort()
+            array
+        }
+    }
 }
